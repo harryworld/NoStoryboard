@@ -8,13 +8,24 @@
 
 import Cocoa
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    var window: NSWindow?
+    var vc: ViewController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        window = NSWindow(
+            contentRect: NSMakeRect(10, 10, 300, 300),
+            styleMask: [.resizable, .miniaturizable, .closable, .titled],
+            backing: .buffered,
+            defer: false)
+        vc = ViewController()
+        let content = window!.contentView
+        let view = vc!.view
+        content!.addSubview(view)
+        
+        window!.makeKeyAndOrderFront(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
